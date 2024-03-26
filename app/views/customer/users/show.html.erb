@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-md-3">
+    <div class="card card-primary card-outline">
+      <div class="card-body">
+        <ul class="list-group list-group-unbordered mb-3">
+          <li class="list-group-item">
+            <b>Nome</b>
+            <span class="float-right"><%= @user.first_name %></span>
+          </li>
+          <li class="list-group-item">
+            <b>Cognome</b>
+            <span class="float-right"><%= @user.last_name %></span>
+          </li>
+        </ul>
+        <%= link_to "Modifica profilo", edit_customer_user_path(@customer), class: "btn btn-primary btn-block" %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-9">
+  </div>
+</div>

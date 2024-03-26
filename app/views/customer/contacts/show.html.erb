@@ -1,0 +1,53 @@
+<%= render "customer/show_layout", user: @user do %>
+  <div class="card">
+    <div class="card-header p-2">
+      <ul class="nav nav-pills">
+        <li class="nav-item">
+          <%= link_to "Contatti", customer_user_contact_path(@user), class: "nav-link active" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Indirizzi", customer_user_addresses_path(@user), class: "nav-link" %>
+        </li>
+      </ul>
+    </div>
+    <div class="card-body">
+      <div class="row <% if @contact %> mb-3 <% end %>">
+        <div class="col-lg-12">
+          <% if @contact %>
+            <div class="btn-group float-right">
+              <%= link_to "Modifica", edit_customer_user_contact_path(@user), class: "btn btn-warning" %>
+              <%= link_to "Elimina", customer_user_contact_path(@user), class: "btn btn-danger", data: {
+                turbo_method: :delete,
+                turbo_confirm: "Sei sicuro?"
+              } %>
+            </div>
+          <% else %>
+            <%= link_to "Nuovo", new_customer_user_contact_path(@user), class: "btn btn-primary float-right" %>
+          <% end %>
+        </div>
+      </div>
+      <% if @contact %>
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>Codice Fiscale</th>
+            <th>Email</th>
+            <th>Numero di telefono</th>
+            <th>P.IVA</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><%= @contact.id %></td>
+            <td><%= @contact.fiscal_code %></td>
+            <td><%= @contact.email %></td>
+            <td><%= @contact.phone_number %></td>
+            <td><%= @contact.vat_number %></td>
+          </tr>
+          </tbody>
+        </table>
+      <% end %>
+    </div>
+  </div>
+<% end %>

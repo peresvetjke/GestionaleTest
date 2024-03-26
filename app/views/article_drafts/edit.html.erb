@@ -1,0 +1,28 @@
+<%= form_with model: @article_draft do |form| %>
+  <div class="card card-primary">
+    <div class="card-header">
+      <h3 class="card-title">Articolo</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+      <div class="form-group">
+        <%= form.label :name %><br>
+        <%= form.text_field :name, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= form.label :description %><br>
+        <%= form.text_field :description, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= form.label :price %><br>
+        <%= form.text_field :price, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+  <!-- /.card -->
+  <div class="row">
+    <div class="col-12">
+      <%= form.submit :class => "btn btn-success float-right" %>
+    </div>
+  </div>
+<% end %>

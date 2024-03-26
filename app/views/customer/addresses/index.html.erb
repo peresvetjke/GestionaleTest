@@ -1,0 +1,53 @@
+<%= render "customer/show_layout", user: @user do %>
+  <div class="card">
+    <div class="card-header p-2">
+      <ul class="nav nav-pills">
+        <li class="nav-item">
+          <%= link_to "Contatti", customer_user_contact_path(@user), class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Indirizzi", customer_user_addresses_path(@user), class: "nav-link active" %>
+        </li>
+      </ul>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-12 mb-3">
+          <%= link_to "Nuovo", new_customer_user_address_path(@user), class: "btn btn-primary float-right" %>
+        </div>
+      </div>
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>Nome</th>
+          <th>Nazione</th>
+          <th>Provincia</th>
+          <th>Città</th>
+          <th>Cap</th>
+          <th>Azioni</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @user.addresses.each do |address| %>
+        <tr>
+          <td><%= address.id %></td>
+          <td><%= address.name %></td>
+          <td><%= address.country %></td>
+          <td><%= address.province %></td>
+          <td><%= address.city %></td>
+          <td><%= address.postcode %></td>
+          <td>
+            <%= link_to "Modifica", edit_customer_user_address_path(@user, address), class: "btn btn-warning" %>
+            <%= link_to "Elimina", customer_user_address_path(@user, address), class: "btn btn-danger", data: {
+              turbo_method: :delete,
+              turbo_confirm: "Sei sicuro?"
+            } %>
+          </td>
+        </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% end %>
